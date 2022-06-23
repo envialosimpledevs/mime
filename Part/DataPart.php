@@ -31,9 +31,10 @@ class DataPart extends TextPart
     private $handle;
 
     /**
+     * OVERRIDE: Accept CID
      * @param resource|string $body
      */
-    public function __construct($body, string $filename = null, string $contentType = null, string $encoding = null)
+    public function __construct($body, string $filename = null, string $contentType = null, string $encoding = null, string $cid = null)
     {
         unset($this->_parent);
 
@@ -48,6 +49,11 @@ class DataPart extends TextPart
             $this->filename = $filename;
             $this->setName($filename);
         }
+
+        if (null !== $cid) {
+            $this->cid = $cid;
+        }
+
         $this->setDisposition('attachment');
     }
 

@@ -80,7 +80,8 @@ final class IdentificationHeader extends AbstractHeader
         $this->ids = [];
         $this->idsAsAddresses = [];
         foreach ($ids as $id) {
-            $this->idsAsAddresses[] = new Address($id);
+            // OVERRIDE: Prevent Address validation on IdentificationHeader
+            $this->idsAsAddresses[] = new Address($id, '', true);
             $this->ids[] = $id;
         }
     }
